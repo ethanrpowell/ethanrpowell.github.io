@@ -7,14 +7,17 @@
   <style>
     :root {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color-scheme: light dark;
+      /* Changed to light theme */
+      color-scheme: light;
     }
 
     body {
       margin: 0;
       padding: 0;
-      background: #0f172a;
-      color: #e5e7eb;
+      /* Light background */
+      background: #f9fafb;
+      /* Dark text */
+      color: #1f2937;
       display: flex;
       justify-content: center;
       min-height: 100vh;
@@ -40,12 +43,14 @@
     .subtitle {
       margin-top: 0.5rem;
       font-size: 0.95rem;
-      color: #9ca3af;
+      /* Medium-gray text */
+      color: #6b7280;
     }
 
     .tabs {
       display: flex;
-      border-bottom: 1px solid #1f2937;
+      /* Light border */
+      border-bottom: 1px solid #d1d5db;
       margin-bottom: 1.5rem;
       gap: 0.25rem;
     }
@@ -55,27 +60,32 @@
       font-size: 0.95rem;
       border: none;
       background: transparent;
-      color: #9ca3af;
+      /* Medium-gray text */
+      color: #6b7280;
       cursor: pointer;
       border-radius: 0.75rem 0.75rem 0 0;
     }
 
     .tab.active {
-      background: #111827;
-      color: #f9fafb;
+      /* White background for active tab */
+      background: #ffffff;
+      /* Dark text */
+      color: #111827;
       border-bottom: 2px solid #3b82f6;
     }
 
     .tab:hover {
-      color: #e5e7eb;
+      color: #1f2937;
     }
 
     .panel {
       display: none;
-      background: #111827;
+      /* White panel background */
+      background: #ffffff;
       border-radius: 0.75rem;
       padding: 1.5rem;
-      border: 1px solid #1f2937;
+      /* Light panel border */
+      border: 1px solid #e5e7eb;
     }
 
     .panel.active {
@@ -91,7 +101,8 @@
     p {
       line-height: 1.6;
       font-size: 0.95rem;
-      color: #d1d5db;
+      /* Dark gray text for paragraphs */
+      color: #374151;
     }
 
     .project-list {
@@ -101,12 +112,33 @@
     }
 
     .project-item {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #1f2937;
+      padding: 1.25rem 0;
+      /* Light border */
+      border-bottom: 1px solid #e5e7eb;
+      /* --- NEW CSS FOR IMAGE LAYOUT --- */
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
     }
 
     .project-item:last-child {
       border-bottom: none;
+    }
+    
+    /* --- NEW CSS FOR IMAGE PLACEHOLDER --- */
+    .project-image {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      /* Light gray background for placeholder */
+      background-color: #e5e7eb;
+      flex-shrink: 0; /* Prevents image from shrinking */
+    }
+    
+    /* --- NEW CSS FOR PROJECT TEXT CONTENT --- */
+    .project-content {
+      flex: 1; /* Allows text to fill remaining space */
     }
 
     .project-title {
@@ -116,7 +148,8 @@
 
     .project-meta {
       font-size: 0.8rem;
-      color: #9ca3af;
+      /* Medium-gray text */
+      color: #6b7280;
       margin-top: 0.15rem;
     }
 
@@ -126,7 +159,8 @@
     }
 
     a {
-      color: #60a5fa;
+      /* Darker blue for light background */
+      color: #2563eb;
       text-decoration: none;
     }
 
@@ -141,6 +175,21 @@
 
       .panel {
         padding: 2rem;
+      }
+    }
+
+    /* --- NEW CSS FOR MOBILE IMAGE LAYOUT --- */
+    @media (max-width: 600px) {
+      .project-item {
+        /* Stack image and text vertically on small screens */
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .project-image {
+        width: 100%;
+        /* Use a 16:9 aspect ratio for height */
+        height: auto;
+        aspect-ratio: 16 / 9;
       }
     }
   </style>
@@ -158,51 +207,62 @@
     </nav>
 
     <main>
-      <!-- Projects Panel -->
       <section id="projects" class="panel active">
         <h2>Projects</h2>
         <p>Selected engineering projects from my portfolio.</p>
         <ul class="project-list">
+          
           <li class="project-item">
-            <div class="project-title">Cycling Time Trial Armrests</div>
-            <div class="project-meta">Cycling ergonomics · CAD · 3D printing</div>
-            <p class="project-desc">
-              Designed custom time trial armrests around personal measurements to maximize control,
-              comfort, and aerodynamics under strict international sporting regulations. The geometry
-              is tuned to strategically detach airflow from the body while providing both linear and
-              rotational adjustment. The parts were modeled in Autodesk Inventor and manufactured
-              using FDM 3D printing in PLA, with geometry and wall structure optimized around the
-              material’s strength limits.
-            </p>
+            <img src="images/test" alt="Cycling Time Trial Armrests placeholder" class="project-image">
+            
+            <div class="project-content">
+              <div class="project-title">Cycling Time Trial Armrests</div>
+              <div class="project-meta">Cycling ergonomics · CAD · 3D printing</div>
+              <p class="project-desc">
+                Designed custom time trial armrests around personal measurements to maximize control,
+                comfort, and aerodynamics under strict international sporting regulations. The geometry
+                is tuned to strategically detach airflow from the body while providing both linear and
+                rotational adjustment. The parts were modeled in Autodesk Inventor and manufactured
+                using FDM 3D printing in PLA, with geometry and wall structure optimized around the
+                material’s strength limits.
+              </p>
+            </div>
           </li>
 
           <li class="project-item">
-            <div class="project-title">Electric Skateboard Electronics Battery Mount and Housing</div>
-            <div class="project-meta">Mechanical design · Electronics packaging · Hybrid fabrication</div>
-            <p class="project-desc">
-              Developed a modular, quick-swappable battery housing and electronics mount for an
-              electric skateboard that can withstand rough terrain. The design uses FDM-printed
-              mounts and housing combined with a ¼″ plywood lid and base in a sandwich structure,
-              transferring main tensile loads into bolts rather than into printed parts. Cable glands
-              improve water resistance and aesthetics, while cable sheaths provide additional protection and strain relief. Four through-bolts with nylock nuts allow fast disassembly and maintenance. Modeled and iterated in Autodesk Inventor.
-            </p>
+            <img src="images/test" alt="Electric Skateboard placeholder" class="project-image">
+            
+            <div class="project-content">
+              <div class="project-title">Electric Skateboard Electronics Battery Mount and Housing</div>
+              <div class="project-meta">Mechanical design · Electronics packaging · Hybrid fabrication</div>
+              <p class="project-desc">
+                Developed a modular, quick-swappable battery housing and electronics mount for an
+                electric skateboard that can withstand rough terrain. The design uses FDM-printed
+                mounts and housing combined with a ¼″ plywood lid and base in a sandwich structure,
+                transferring main tensile loads into bolts rather than into printed parts. Cable glands
+                improve water resistance and aesthetics, while cable sheaths provide additional protection and strain relief. Four through-bolts with nylock nuts allow fast disassembly and maintenance. Modeled and iterated in Autodesk Inventor.
+              </p>
+            </div>
           </li>
 
           <li class="project-item">
-            <div class="project-title">Bicycle Seat Light Mount</div>
-            <div class="project-meta">Bike accessories · CAD · 3D printing</div>
-            <p class="project-desc">
-              Created a lightweight taillight mount that positions the light perpendicular to the
-              ground for optimal visibility while keeping clearance for an under-saddle bag. The
-              mount reuses existing hardware and mounting points on the underside of the saddle,
-              minimizing additional components and weight. The part was modeled in Autodesk
-              Inventor and produced with FDM 3D printing in PLA.
-            </p>
+            <img src="images/test" alt="Bicycle Seat Light Mount placeholder" class="project-image">
+
+            <div class="project-content">
+              <div class="project-title">Bicycle Seat Light Mount</div>
+              <div class="project-meta">Bike accessories · CAD · 3D printing</div>
+              <p class="project-desc">
+                Created a lightweight taillight mount that positions the light perpendicular to the
+                ground for optimal visibility while keeping clearance for an under-saddle bag. The
+                mount reuses existing hardware and mounting points on the underside of the saddle,
+                minimizing additional components and weight. The part was modeled in Autodesk
+                Inventor and produced with FDM 3D printing in PLA.
+              </p>
+            </div>
           </li>
         </ul>
       </section>
 
-      <!-- About Panel -->
       <section id="about" class="panel">
         <h2>About</h2>
         <p>
