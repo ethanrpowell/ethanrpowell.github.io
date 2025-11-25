@@ -25,7 +25,7 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       width: 100%;
       padding: 2rem 1.5rem 3rem;
     }
@@ -128,8 +128,8 @@
     
     /* --- NEW CSS FOR IMAGE PLACEHOLDER --- */
     .project-image {
-      width: 200px;
-      height: 200px;
+      width: 400px;
+      height: 350px;
       object-fit: cover;
       border-radius: 0.5rem;
       /* Light gray background for placeholder */
@@ -200,6 +200,12 @@
         height: auto;
         aspect-ratio: 16 / 9;
       }
+      .standard-image {
+        width: 100%;
+        /* Use a 16:9 aspect ratio for height */
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
     }
   
 
@@ -214,7 +220,9 @@
       
       <p class="subtitle">UWaterloo Mechatronics Engineering Student | Canadian National Team Track Cyclist</p>
       
-      <p class="subtitle"> <a href="https://www.instagram.com/ethanrpowell" target="_blank">Instagram</a> | <a href="https://www.linkedin.com/in/ethanrpowell" target="_blank">LinkedIn</a> | <a href="files/EthanPowellResumePublic.pdf" target="_blank">Resume</a> | <a href="https://fr.wikipedia.org/wiki/Ethan_Powell" target="_blank">Wiki</a> </p>
+      <p class="subtitle"> <a href="https://www.instagram.com/ethanrpowell" target="_blank">Instagram</a> 
+        | <a href="https://www.linkedin.com/in/ethanrpowell" target="_blank">LinkedIn</a> 
+        | <a href="files/EthanPowellResumePublic.pdf" target="_blank">Resume</a> </p>
     </header>
     <nav class="tabs">
       <button class="tab active" data-target="projects">Projects</button>
@@ -225,7 +233,7 @@
     <main>
       <section id="projects" class="panel active">
         <h2>Projects</h2>
-        <p>Selected engineering projects from my portfolio.</p>
+        
         <ul class="project-list">
           
           <li class="project-item">
@@ -238,7 +246,11 @@
                 Designed custom time trial armrests around personal measurements to maximize control,
                 comfort, and aerodynamics under strict international sporting regulations. The geometry
                 is tuned to strategically detach airflow from the body while providing both linear and
-                rotational adjustment. The parts were modeled in Autodesk Inventor and manufactured
+                rotational adjustment. 
+                </p>
+                <p class="project-desc">
+                
+                The parts were modeled in Autodesk Inventor and manufactured
                 using FDM 3D printing in PLA, with geometry and wall structure optimized around the
                 material’s strength limits.
               </p>
@@ -255,7 +267,7 @@
                 This VEX IQ project served as my first-semester design project and focused on building a fully automated sorting robot that pushed the limits of the kit’s mechanical and software constraints. The system identified and sorted objects by both colour and size, with logic to safely handle out-of-range or unreadable inputs. A presence-detection workflow ensured the robot only processed items when an apple (or test object) was correctly loaded, and additional checks detected when an item fell out or was removed prematurely.
                 A custom bumper-based sizing carriage, driven by a chain-and-sprocket setup, delivered consistent and repeatable measurements despite the limited hardware tolerances in VEX IQ. Several 3D-printed components supported precise alignment and motion where the stock parts were insufficient.
                 </p>
-              <p>
+              <p class="project-desc">
                 The software emphasized reliability and transparency. All actions, sensor states, and decision paths streamed in real time to a wirelessly connected laptop through continuous console logging, while full data tracking and on-brain display are utilised for direct user interaction. The robot used sensor self-calibration during operation to prevent drift and irregularities in motor control, resulting in consistent performance across many test cycles. An automatic timeout routine protected the battery by safely shutting the system down if left unattended.
                 Overall, the project produced a robust, self-monitoring sorting system that demonstrated careful mechanical design, sensor-validated control, and efficient use of the VEX IQ ecosystem. Programmed in C++.
               </p>
@@ -273,13 +285,14 @@
                 electric skateboard that can withstand rough terrain. The design uses FDM-printed
                 mounts and housing combined with a ¼″ plywood lid and base in a sandwich structure,
                 transferring main tensile loads into bolts rather than into printed parts. Cable glands
-                improve water resistance and aesthetics, while cable sheaths provide additional protection and strain relief. Four through-bolts with nylock nuts allow fast disassembly and maintenance. Modeled and iterated in Autodesk Inventor.
+                improve water resistance and aesthetics, while cable sheaths provide additional protection and strain relief. 
+                Four through-bolts with nylock nuts allow fast disassembly and maintenance. Modeled and iterated in Autodesk Inventor.
               </p>
             </div>
           </li>
 
           <li class="project-item">
-            <img src="images/SeatMount.png" alt="Bicycle Seat Light Mount placeholder" class="standard-image">
+            <img src="images/SeatMount.png" alt="Bicycle Seat Light Mount placeholder" class="project-image">
 
             <div class="project-content">
               <div class="project-title">Bicycle Seat Light Mount</div>
