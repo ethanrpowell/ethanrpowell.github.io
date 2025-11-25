@@ -137,6 +137,14 @@
       flex-shrink: 0; /* Prevents image from shrinking */
     }
     
+    .standard-image {
+      object-fit: cover;
+      border-radius: 0.5rem;
+      /* Light gray background for placeholder */
+      background-color: #e5e7eb;
+      flex-shrink: 0; /* Prevents image from shrinking */
+    }
+
     /* --- NEW CSS FOR PROJECT TEXT CONTENT --- */
     .project-content {
       flex: 1; /* Allows text to fill remaining space */
@@ -193,6 +201,10 @@
         aspect-ratio: 16 / 9;
       }
     }
+  
+
+  
+  
   </style>
 </head>
 <body>
@@ -206,6 +218,7 @@
     </header>
     <nav class="tabs">
       <button class="tab active" data-target="projects">Projects</button>
+      <button class="tab" data-target="cycling">Cycling</button>
       <button class="tab" data-target="about">About</button>
     </nav>
 
@@ -239,13 +252,12 @@
               <div class="project-title">VEX IQ Apple Sorting Robot</div>
               <div class="project-meta">Mechanical design · C++ · Control Systems · 3D printing</div>
               <p class="project-desc">
-               This VEX IQ project served as my first-semester design project and focused on building a fully automated sorting robot that pushed the limits of the kit’s mechanical and software constraints. The system identified and sorted objects by both colour and size, with logic to safely handle out-of-range or unreadable inputs. A presence-detection workflow ensured the robot only processed items when an apple (or test object) was correctly loaded, and additional checks detected when an item fell out or was removed prematurely.
-
-A custom bumper-based sizing carriage, driven by a chain-and-sprocket setup, delivered consistent and repeatable measurements despite the limited hardware tolerances in VEX IQ. Several 3D-printed components supported precise alignment and motion where the stock parts were insufficient.
-
-The software emphasized reliability and transparency. All actions, sensor states, and decision paths streamed in real time to a wirelessly connected laptop through continuous console logging, while full data tracking and on-brain display are utilised for direct user interaction. The robot used sensor self-calibration during operation to prevent drift and irregularities in motor control, resulting in consistent performance across many test cycles. An automatic timeout routine protected the battery by safely shutting the system down if left unattended.
-
-Overall, the project produced a robust, self-monitoring sorting system that demonstrated careful mechanical design, sensor-validated control, and efficient use of the VEX IQ ecosystem. Programmed in C++.
+                This VEX IQ project served as my first-semester design project and focused on building a fully automated sorting robot that pushed the limits of the kit’s mechanical and software constraints. The system identified and sorted objects by both colour and size, with logic to safely handle out-of-range or unreadable inputs. A presence-detection workflow ensured the robot only processed items when an apple (or test object) was correctly loaded, and additional checks detected when an item fell out or was removed prematurely.
+                A custom bumper-based sizing carriage, driven by a chain-and-sprocket setup, delivered consistent and repeatable measurements despite the limited hardware tolerances in VEX IQ. Several 3D-printed components supported precise alignment and motion where the stock parts were insufficient.
+                </p>
+              <p>
+                The software emphasized reliability and transparency. All actions, sensor states, and decision paths streamed in real time to a wirelessly connected laptop through continuous console logging, while full data tracking and on-brain display are utilised for direct user interaction. The robot used sensor self-calibration during operation to prevent drift and irregularities in motor control, resulting in consistent performance across many test cycles. An automatic timeout routine protected the battery by safely shutting the system down if left unattended.
+                Overall, the project produced a robust, self-monitoring sorting system that demonstrated careful mechanical design, sensor-validated control, and efficient use of the VEX IQ ecosystem. Programmed in C++.
               </p>
             </div>
           </li>
@@ -267,7 +279,7 @@ Overall, the project produced a robust, self-monitoring sorting system that demo
           </li>
 
           <li class="project-item">
-            <img src="images/SeatMount.png" alt="Bicycle Seat Light Mount placeholder" class="project-image">
+            <img src="images/SeatMount.png" alt="Bicycle Seat Light Mount placeholder" class="standard-image">
 
             <div class="project-content">
               <div class="project-title">Bicycle Seat Light Mount</div>
@@ -281,12 +293,20 @@ Overall, the project produced a robust, self-monitoring sorting system that demo
               </p>
             </div>
           </li>
+
+          <body>
+
+ 
+
+
         </ul>
       </section>
 
       <section id="about" class="panel">
         <h2>About</h2>
-        <p>
+
+        <img src="images/profile_photo.jpg" alt="Ethan Powell Profile" style="width:100%; max-width:500px" class="standard-image">
+         <p>  
           I am a Mechatronics Engineering student at the University of Waterloo and a Canadian
           National Team track cyclist. I combine hands-on mechanical design with high-performance
           sport, using prototyping, CAD, and data to solve practical problems on and off the bike.
@@ -298,10 +318,38 @@ Overall, the project produced a robust, self-monitoring sorting system that demo
           constraints like manufacturability, durability, and sporting regulations.
         </p>
         <p>
-         
-          </a>.
+          </a>
         </p>
       </section>
+
+      <section id="cycling" class="panel">
+        <h2>Cycling</h2>
+
+        <img src="images/tp_pac.jpg" alt="Team Pursuit Pan Am Champs 2025" style="width:100%; max-width:500px" class="standard-image">
+         
+          <h3>Top Results</h3>
+            
+            
+            <p>
+              &#129352; <strong>Silver</strong> - 2025 Pan American Championships - Team Pursuit
+            </p>
+            <p>
+              &#129353; <strong>Bronze</strong> - 2024 Pan American Championships - Team Pursuit
+            </p>
+            <p>  
+              &#129351; <strong>World Champion</strong> - 2023 Junior World Championships - Points Race
+            </p>
+            <p>
+              &#129353; <strong>Bronze and Canadian Record</strong> - 2023 Junior World Championships - Team Pursuit
+            </p>
+              
+            </p>
+            <p>
+          </a>
+        </p>
+      </section>
+
+
     </main>
   </div>
 
@@ -321,5 +369,10 @@ Overall, the project produced a robust, self-monitoring sorting system that demo
       });
     });
   </script>
+
 </body>
+
+
+
+
 </html>
