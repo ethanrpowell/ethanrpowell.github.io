@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
- <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <title>Ethan Powell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      /* Changed to light theme */
       color-scheme: light;
     }
 
     body {
       margin: 0;
       padding: 0;
-      /* Light background */
       background: #f9fafb;
-      /* Dark text */
       color: #1f2937;
       display: flex;
       justify-content: center;
@@ -30,9 +27,22 @@
       padding: 2rem 1.5rem 3rem;
     }
 
+    /* --- ANIMATIONS --- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* --- HEADER & TABS --- */
     header {
       text-align: center;
       margin-bottom: 2rem;
+      animation: fadeIn 0.6s ease-out;
     }
 
     h1 {
@@ -44,13 +54,11 @@
     .subtitle {
       margin-top: 0.5rem;
       font-size: 0.95rem;
-      /* Medium-gray text */
       color: #6b7280;
     }
 
     .tabs {
       display: flex;
-      /* Light border */
       border-bottom: 1px solid #d1d5db;
       margin-bottom: 1.5rem;
       gap: 0.25rem;
@@ -61,32 +69,32 @@
       font-size: 0.95rem;
       border: none;
       background: transparent;
-      /* Medium-gray text */
       color: #6b7280;
       cursor: pointer;
       border-radius: 0.75rem 0.75rem 0 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .tab:hover {
+      color: #111827;
+      background-color: #e5e7eb;
+      transform: translateY(-2px);
     }
 
     .tab.active {
-      /* White background for active tab */
       background: #ffffff;
-      /* Dark text */
       color: #111827;
       border-bottom: 2px solid #3b82f6;
     }
 
-    .tab:hover {
-      color: #1f2937;
-    }
-
+    /* --- PANELS & CONTENT --- */
     .panel {
       display: none;
-      /* White panel background */
       background: #ffffff;
       border-radius: 0.75rem;
       padding: 1.5rem;
-      /* Light panel border */
       border: 1px solid #e5e7eb;
+      animation: fadeIn 0.4s ease-out;
     }
 
     .panel.active {
@@ -102,7 +110,6 @@
     p {
       line-height: 1.6;
       font-size: 0.95rem;
-      /* Dark gray text for paragraphs */
       color: #374151;
     }
 
@@ -114,9 +121,7 @@
 
     .project-item {
       padding: 1.25rem 0;
-      /* Light border */
       border-bottom: 1px solid #e5e7eb;
-      /* --- NEW CSS FOR IMAGE LAYOUT --- */
       display: flex;
       gap: 1.25rem;
       align-items: flex-start;
@@ -125,29 +130,9 @@
     .project-item:last-child {
       border-bottom: none;
     }
-    
-    /* --- NEW CSS FOR IMAGE PLACEHOLDER --- */
-    .project-image {
-      width: 400px;
-      height: 350px;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      /* Light gray background for placeholder */
-      background-color: #e5e7eb;
-      flex-shrink: 0; /* Prevents image from shrinking */
-    }
-    
-    .standard-image {
-      object-fit: cover;
-      border-radius: 0.5rem;
-      /* Light gray background for placeholder */
-      background-color: #e5e7eb;
-      flex-shrink: 0; /* Prevents image from shrinking */
-    }
 
-    /* --- NEW CSS FOR PROJECT TEXT CONTENT --- */
     .project-content {
-      flex: 1; /* Allows text to fill remaining space */
+      flex: 1;
     }
 
     .project-title {
@@ -157,7 +142,6 @@
 
     .project-meta {
       font-size: 0.8rem;
-      /* Medium-gray text */
       color: #6b7280;
       margin-top: 0.15rem;
     }
@@ -168,62 +152,113 @@
     }
 
     a {
-      /* Darker blue for light background */
       color: #2563eb;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     a:hover {
+      color: #1d4ed8;
       text-decoration: underline;
     }
 
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 2.8rem;
-      }
-
-      .panel {
-        padding: 2rem;
-      }
+    /* --- IMAGES & HOVER EFFECTS --- */
+    .project-image, .standard-image {
+      object-fit: cover;
+      border-radius: 0.5rem;
+      flex-shrink: 0;
+      cursor: zoom-in; /* Change cursor to magnifying glass */
+      
+      /* Loading Animation (Shimmer) */
+      background: #e5e7eb;
+      background: linear-gradient(90deg, #e5e7eb 8%, #f3f4f6 18%, #e5e7eb 33%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite linear;
+      
+      /* Hover Zoom Transition */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* --- NEW CSS FOR MOBILE IMAGE LAYOUT --- */
+    .project-image:hover, .standard-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .project-image {
+      width: 400px;
+      height: 350px;
+    }
+    
+    .standard-image {
+       width: 100%; 
+       max-width: 500px;
+       height: auto;
+       aspect-ratio: 16/9;
+    }
+
+    /* --- LIGHTBOX (Popup) --- */
+    #lightbox {
+      display: none; /* Hidden by default so it can't block clicks */
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+
+    #lightbox.active {
+      display: flex; /* Only visible when active */
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (min-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      .panel { padding: 2rem; }
+    }
+
     @media (max-width: 600px) {
       .project-item {
-        /* Stack image and text vertically on small screens */
         flex-direction: column;
         gap: 0.75rem;
       }
       .project-image {
         width: 100%;
-        /* Use a 16:9 aspect ratio for height */
         height: auto;
-        aspect-ratio: 16 / 16;
+        aspect-ratio: 16 / 12;
       }
       .standard-image {
         width: 100%;
-        /* Use a 16:9 aspect ratio for height */
         height: auto;
-        aspect-ratio: 16 / 16;
       }
     }
-  
-
-  
-  
   </style>
 </head>
 <body>
+
   <div class="container">
     <header>
       <h1>Ethan Powell</h1>
-      
       <p class="subtitle">UWaterloo Mechatronics Engineering Student | Canadian National Team Track Cyclist</p>
-      
-      <p class="subtitle"> <a href="https://www.instagram.com/ethanrpowell" target="_blank">Instagram</a> 
-        | <a href="https://www.linkedin.com/in/ethanrpowell" target="_blank">LinkedIn</a> 
-        | <a href="files/EthanPowellResumePublic.pdf" target="_blank">Resume</a> </p>
+      <p class="subtitle"> 
+        <a href="https://www.instagram.com/ethanrpowell" target="_blank">Instagram</a> | 
+        <a href="https://www.linkedin.com/in/ethanrpowell" target="_blank">LinkedIn</a> | 
+        <a href="files/EthanPowellResumePublic.pdf" target="_blank">Resume</a> 
+      </p>
     </header>
+
     <nav class="tabs">
       <button class="tab active" data-target="projects">Projects</button>
       <button class="tab" data-target="cycling">Cycling</button>
@@ -233,12 +268,10 @@
     <main>
       <section id="projects" class="panel active">
         <h2>Projects</h2>
-        
         <ul class="project-list">
           
           <li class="project-item">
-            <img src="images/ArmPadExample.png" alt="Cycling Time Trial Armrests placeholder" class="project-image">
-            
+            <img src="images/ArmPadExample.png" alt="Cycling Time Trial Armrests" class="project-image">
             <div class="project-content">
               <div class="project-title">Cycling Time Trial Armrests</div>
               <div class="project-meta">Cycling Aerodynamics · CAD · 3D printing</div>
@@ -246,10 +279,9 @@
                 Designed custom time trial armrests around personal measurements to maximize control,
                 comfort, and aerodynamics under strict international sporting regulations. The geometry
                 is tuned to strategically detach airflow from the body while providing both linear and
-                rotational adjustment. 
-                </p>
-                <p class="project-desc">
-                
+                rotational adjustment.
+              </p>
+              <p class="project-desc">
                 The parts were modeled in Autodesk Inventor and manufactured
                 using FDM 3D printing in PLA, with geometry and wall structure optimized around the
                 material’s strength limits.
@@ -258,8 +290,7 @@
           </li>
 
           <li class="project-item">
-            <img src="images/VEX_Sorting_Robot1.png" alt="VEX_Sorting_Robot1.png placeholder" class="project-image">
-            
+            <img src="images/VEX_Sorting_Robot1.png" alt="VEX IQ Sorting Robot" class="project-image">
             <div class="project-content">
               <div class="project-title">VEX IQ Apple Sorting Robot</div>
               <div class="project-meta">Mechanical design · C++ · Control Systems · 3D printing</div>
@@ -271,7 +302,7 @@
                 A custom bumper-based sizing carriage, driven by a chain-and-sprocket setup, delivered consistent and repeatable measurements despite 
                 the limited hardware tolerances in VEX IQ. Several 3D-printed components supported precise alignment and motion where the stock parts 
                 were insufficient.
-                </p>
+              </p>
               <p class="project-desc">
                 The software emphasized reliability and transparency. All actions, sensor states, and decision paths streamed in real time 
                 to a wirelessly connected laptop through continuous console logging, while full data tracking and on-brain display are utilised 
@@ -284,8 +315,7 @@
           </li>
           
           <li class="project-item">
-            <img src="images/ESkate.jpg" alt="Electric Skateboard placeholder" class="project-image">
-            
+            <img src="images/ESkate.jpg" alt="Electric Skateboard Battery Mount" class="project-image">
             <div class="project-content">
               <div class="project-title">Electric Skateboard Electronics Battery Mount and Housing</div>
               <div class="project-meta">Mechanical design · Electronics packaging · Hybrid fabrication</div>
@@ -301,8 +331,7 @@
           </li>
 
           <li class="project-item">
-            <img src="images/SeatMount.png" alt="Bicycle Seat Light Mount placeholder" class="project-image">
-
+            <img src="images/SeatMount.png" alt="Bicycle Seat Light Mount" class="project-image">
             <div class="project-content">
               <div class="project-title">Bicycle Seat Light Mount</div>
               <div class="project-meta">Bike accessories · CAD · 3D printing</div>
@@ -316,19 +345,23 @@
             </div>
           </li>
 
-          <body>
-
- 
-
-
         </ul>
+      </section>
+
+      <section id="cycling" class="panel">
+        <h2>Cycling</h2>
+        <img src="images/tp_pac.jpg" alt="Team Pursuit Pan Am Champs 2025" class="standard-image">
+        <h3>Top Results</h3>
+        <p>&#129352; <strong>Silver</strong> - 2025 Pan American Championships - Team Pursuit</p>
+        <p>&#129353; <strong>Bronze</strong> - 2024 Pan American Championships - Team Pursuit</p>
+        <p>&#129351; <strong>World Champion</strong> - 2023 Junior World Championships - Points Race</p>
+        <p>&#129353; <strong>Bronze and Canadian Record</strong> - 2023 Junior World Championships - Team Pursuit</p>
       </section>
 
       <section id="about" class="panel">
         <h2>About</h2>
-
-        <img src="images/profile_photo.jpg" alt="Ethan Powell Profile" style="width:100%; max-width:500px" class="standard-image">
-         <p>  
+        <img src="images/profile_photo.jpg" alt="Ethan Powell Profile" class="standard-image">
+        <p>
           I am a Mechatronics Engineering student at the University of Waterloo and a Canadian
           National Team track cyclist. I combine hands-on mechanical design with high-performance
           sport, using prototyping, CAD, and data to solve practical problems on and off the bike.
@@ -339,62 +372,51 @@
           taking projects from concept to functional prototype, with a focus on real-world
           constraints like manufacturability, durability, and sporting regulations.
         </p>
-        <p>
-          </a>
-        </p>
       </section>
-
-      <section id="cycling" class="panel">
-        <h2>Cycling</h2>
-
-        <img src="images/tp_pac.jpg" alt="Team Pursuit Pan Am Champs 2025" style="width:100%; max-width:500px" class="standard-image">
-         
-          <h3>Top Results</h3>
-            
-            
-            <p>
-              &#129352; <strong>Silver</strong> - 2025 Pan American Championships - Team Pursuit
-            </p>
-            <p>
-              &#129353; <strong>Bronze</strong> - 2024 Pan American Championships - Team Pursuit
-            </p>
-            <p>  
-              &#129351; <strong>World Champion</strong> - 2023 Junior World Championships - Points Race
-            </p>
-            <p>
-              &#129353; <strong>Bronze and Canadian Record</strong> - 2023 Junior World Championships - Team Pursuit
-            </p>
-              
-            </p>
-            <p>
-          </a>
-        </p>
-      </section>
-
 
     </main>
   </div>
 
+  <div id="lightbox">
+    <img id="lightbox-img" src="" alt="Enlarged view">
+  </div>
+
   <script>
+    // --- TAB LOGIC ---
     const tabs = document.querySelectorAll(".tab");
     const panels = document.querySelectorAll(".panel");
 
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
         const targetId = tab.getAttribute("data-target");
-
+        // Remove active class from all
         tabs.forEach(t => t.classList.remove("active"));
         panels.forEach(p => p.classList.remove("active"));
-
+        // Add active class to clicked
         tab.classList.add("active");
         document.getElementById(targetId).classList.add("active");
       });
     });
+
+    // --- LIGHTBOX LOGIC ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const images = document.querySelectorAll('.project-image, .standard-image');
+
+    images.forEach(image => {
+      image.addEventListener('click', () => {
+        lightboxImg.src = image.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg) {
+        lightbox.classList.remove('active');
+      }
+    });
   </script>
 
 </body>
-
-
-
-
 </html>
