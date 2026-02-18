@@ -1,1 +1,1 @@
-Webstie Link: [ethanrpowell.com](url)
+Webstie Link: [[ethanrpowell.com](url)](https://ethanrpowell.com/)
