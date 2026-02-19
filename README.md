@@ -1,1 +1,1 @@
-Webstie Link: https://ethanrpowell.com/
+Website Link: https://ethanrpowell.com/
